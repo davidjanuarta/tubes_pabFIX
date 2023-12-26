@@ -15,6 +15,7 @@ const profile = () => {
 
     return (
         <SafeAreaView >
+            <ScrollView>
             <Heading
                 marginTop={10}
                 mx={3}
@@ -53,84 +54,61 @@ const profile = () => {
                         <Heading
                             color={"white"}
                         >Nama Profile</Heading>
-                        <Text
-                            marginTop={1}
-                            marginLeft={8}
-                            color={"white"}
-                        >Edit Profile</Text>
+
                     </Box>
                 </Box>
             </Center>
 
-            <HStack p={3} justifyContent="space-between" alignItems={"center"}>
-                <Box borderWidth="2"
-                w="100"
-                h="100"
-                p={5}
-                    backgroundColor="#DEDEDE" shadow="4" rounded={20}
-                 
-                 >
-                    <Center>
-                        <Text fontSize={10}>FAVORIT</Text>
-
-                    </Center>
-
-                </Box>
-                <Box borderWidth="2"
-                    w="100"
-                    h="100"
+            <VStack p={3} justifyContent="" alignItems={"center"}>
+                <Box
+                    marginTop={2}
+                    borderWidth="0.5"
+                    w="full"
+                    h="20"
                     p={5}
-                    backgroundColor="#DEDEDE" shadow="4" rounded={20}>
-                    <Center>
-                        <Text fontSize={10}>PAYMENTS</Text>
-
-                    </Center>
-
-                </Box>
-                <Box borderWidth="2"
-                    w="100"
-                    h="100"
-                    p={5}
-                    backgroundColor="#DEDEDE" shadow="4" rounded={20}>
-                    <Center>
-                        <Text fontSize={10}>CONTACT US</Text>
-
-                    </Center>
-
-                </Box>
-            </HStack>
-            
-            <HStack p={3} justifyContent="space-between" alignItems={"center"}>
-                <Box borderWidth="2"
-                    w="100"
-                    h="100"
-                    p={5}
-                    backgroundColor="#DEDEDE" shadow="4" rounded={20}
+                    backgroundColor="#FFFFFF" shadow="9" rounded={10}
 
                 >
                     <Center>
-                        <Text fontSize={10}>SETTING</Text>
+                        <Text fontSize={20}>Setting</Text>
 
                     </Center>
                 </Box>
-                
-                <Box borderWidth="2"
-                    w="100"
-                    h="100"
+
+                <Box
+                    marginTop={2}
+                    borderWidth="0.5"
+                    w="full"
+                    h="20"
                     p={5}
-                    backgroundColor="#DEDEDE" shadow="4" rounded={20}>
+                    backgroundColor="#FFFFFF" shadow="9" rounded={10}>
                     <Center>
-                        <Text fontSize={10}>PROMO</Text>
+                        <Text fontSize={20}>Promo</Text>
                     </Center>
                 </Box>
 
-                <Box borderWidth="2"
-                    w="100"
-                    h="100"
+                <Box
+                    marginTop={2}
+                    borderWidth="0.5"
+                    w="full"
+                    h="20"
                     p={5}
-                    backgroundColor="#DEDEDE" shadow="4" rounded={20}>
+                    backgroundColor="#FFFFFF" shadow="9" rounded={10}>
                     <Center>
-                        <Text fontSize={10}>LOG OUT</Text>
+                        <Text fontSize={20}>History</Text>
+
+                    </Center>
+
+                </Box>
+                <Box
+                    marginTop={2}
+                    borderWidth="0.5"
+                    w="full"
+                    h="20"
+                    p={5}
+                    backgroundColor="#FFFFFF" shadow="9" rounded={10}>
+                    <Center>
+                        <Text fontSize={20}>Log Out</Text>
 
                     </Center>
 
@@ -138,8 +116,8 @@ const profile = () => {
 
 
 
-            </HStack>
-            
+            </VStack>
+            </ScrollView>
         </SafeAreaView>
 
 

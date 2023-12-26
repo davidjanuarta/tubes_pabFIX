@@ -5,11 +5,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider, Text } from "native-base";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Home from "./screens/home";
-import Host from "./screens/video";
 import Profile from "./screens/profile";
 import Sewa from "./screens/for-you";
 import NewsDetail from "./screens/news-detail";
 import Login from "./screens/login";
+import Register from "./screens/register";
 
 // Navigator Declaration
 const Stack = createNativeStackNavigator();
@@ -61,7 +61,6 @@ const Tabs = () => {
     >
       <Tab.Screen name="Home" component={Home} options={noHead} />
       <Tab.Screen name="Sewa" component={Sewa} options={noHead} />
-      <Tab.Screen name="Host" component={Host} options={noHead} />
       <Tab.Screen name="Profile" component={Profile} options={noHead} />
     </Tab.Navigator>
   );
@@ -72,8 +71,13 @@ const App = () => {
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator>
-        <Stack.Screen
-            name="Login"
+          <Stack.Screen
+            name="Register"
+            component={Register}
+            options={noHead}
+          />
+          <Stack.Screen
+            name="LoginScreen"
             component={Login}
             options={noHead}
           />
@@ -83,7 +87,7 @@ const App = () => {
             component={NewsDetail}
             options={noHead}
           />
-          
+
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

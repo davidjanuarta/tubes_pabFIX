@@ -18,13 +18,13 @@ const Home = () => {
                         <Box
 
                             mx={7}
-                            my={2}
+                            my={3}
                             background={'#5997E0'}
-                            width={355}
-                            height={10}
-                            borderRadius={18}
+                            width={350}
+                            height={9}
+                            borderRadius={9}
                         >
-                            <Input p="3" placeholder="Search for a car" w="100%" />            </Box>
+                            <Input p="1" placeholder="Search for a car" w="100%" />            </Box>
                     </HStack>
                     <Box
                         w={'350'}
