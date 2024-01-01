@@ -5,7 +5,7 @@ import {getFirestore} from "firebase/firestore";
 
 
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyCI_DGidbXjnvksaM2dYTN8uYq3ViHPZyE",
   authDomain: "livik-rent.firebaseapp.com",
   projectId: "livik-rent",
@@ -15,10 +15,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+// const auth = getAuth(app);
 
-const db = getFirestore();
-
-export {auth,db};
+// const db = getFirestore();

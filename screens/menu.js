@@ -2,7 +2,7 @@ import { Heading, Center, HStack, Text, Divider, Box, Button } from "native-base
 import { Header } from "../components";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const ForYou = () => {
+const menu = () => {
   return (
     <SafeAreaView>
       <Heading p={3}>Sewa</Heading>
@@ -26,4 +26,4 @@ const ForYou = () => {
   );
 };
 
-export default ForYou;
+export default menu;

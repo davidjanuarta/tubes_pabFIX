@@ -1,42 +1,66 @@
-import { useNavigation } from "@react-navigation/native";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { Heading, Text, FlatList } from "native-base";
-import { Box, ScrollView, Center, VStack, FormControl, Input, Button } from "native-base";
-import { TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import { Box, Button, Center, Heading, VStack } from "native-base";
+import React, { useState } from "react";
+import { TextInput, Alert, TouchableOpacity, Text } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useEffect, useState } from "react";
-import { auth } from "../firebase";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { firebaseConfig } from '../firebase';
+import { initializeApp } from 'firebase/app';
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const LoginScreen = ({}) => {
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+const Login = () => {
     const [email, setEmail] = useState("");
-    const [loading, setLoading] = useState(false);
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
 
-    useEffect(() => {
-        setLoading(true);
-        const unsubscribe = auth.onAuthStateChanged((authUser) => {
-          if(!authUser){
-            setLoading(false);
-          }
-          if(authUser){
-            navigation.replace("home");
-          }
-        });
-    
-        return unsubscribe;
-      },[])
+    const Loginrek = async () => {
+        // signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        //     console.log("user credential", userCredential);
+        //     const user = userCredential.user;
+        //     console.log("user details", user)
+        //     navigation.navigate("Tabs");
+        // })
 
-    const login = () => {
-        signInWithEmailAndPassword(auth,email,password).then((userCredential) => {
-          console.log("user credential",userCredential);
-          const user = userCredential.user;
-          console.log("user details",user)
-        })
-      }
+        const userCollection = collection(db, "users");
+        const QEmail = query(userCollection, where("email", "==",email))
+        const QPassword = query(userCollection, where("password", "==",password))
+
+        const snapEmail = await getDocs(QEmail)
+        const snapPassword = await getDocs(QPassword)
+
+        const GabunganSnap = snapEmail.docs.concat(snapPassword.docs);
+        if (!GabunganSnap.empty) {
+            GabunganSnap.forEach(async (doc) => {
+                const UserData = doc.data();
+                console.log("Ini userData:", UserData);
+
+                const Dataku = {
+                    email: UserData.email,
+                    password: UserData.password,
+                    username: UserData.username,
+                }
+
+                await AsyncStorage.setItem('memori', JSON.stringify(Dataku))
+                .then(() => {
+                    Alert.alert("Success", "anda berhasil masuk")
+                    navigation.replace("Tabs")
+                })
+            })
+        }
 
 
+        
+    }
 
 
     return (
@@ -50,19 +74,21 @@ const LoginScreen = ({}) => {
                         Login
                     </Heading>
                     <VStack space={3} mt="5">
-                        <FormControl>
-                            <FormControl.Label>Email</FormControl.Label>
-                            <Input type="Email" />
-                        </FormControl>
-                        <FormControl>
-                            <FormControl.Label>Password</FormControl.Label>
-                            <Input type="Password" />
-                        </FormControl>
-                        <Button mt="2" color="#5997E0" onPress={() => navigation.navigate('Tabs')}>
+                        <TextInput
+                            placeholder="Enter Email"
+                            value={email}
+                            onChangeText={txt => setEmail(txt)} />
+
+                        <TextInput
+                            placeholder="Enter Password"
+                            value={password}
+                            onChangeText={txt => setPassword(txt)} />
+                        <Button mt="2" color="#5997E0" onPress={Loginrek}>
                             Login
                         </Button>
                         <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                            <Text textAlign="center">Belum punya akun? Register</Text>
+                            <Text textAlign="center">              Belum punya Akun? Register
+                            </Text>
                         </TouchableOpacity>
                     </VStack>
                 </Box>
@@ -71,4 +97,4 @@ const LoginScreen = ({}) => {
     );
 };
 
-export default LoginScreen;
+export default Login;

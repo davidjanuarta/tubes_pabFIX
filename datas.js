@@ -4,9 +4,11 @@ const content =
 const datas = [
   {
     id: 1,
-    nama: "Toyota",
+    nama: "Toyota Innova Reborn",
     harga: "Rp.330.000/Hari",
     image: "https://www.hargatoyotamanado.net/wp-content/uploads/2018/08/4_attitude-black.png",
+    spek : "minimum ron 92      8 seat     Innova Reborn terbaru tahun 2020",
+    desc : "Layanan lepas kunci, mobil bersih dan wangi, cocok digunakan bersama keluarga, mobil sehat dan terjaga mesinnya",
     content: content,
   },
   {
@@ -14,6 +16,8 @@ const datas = [
     nama: "Brio",
     harga: "Rp.175.000/Hari",
     image: "https://asset.honda-indonesia.com/variants/images/VmfueMMOko09BwpogWPFmBUShLbLDzik4wPP6AFz.png",
+    spek : "minimum ron 92, 4 seat, Brio Satya terbaru tahun 2020",
+    desc : "Layanan lepas kunci, mobil bersih dan wangi, cocok digunakan bersama keluarga, mobil sehat dan terjaga mesinnya",
     content: content,
   },
   {
@@ -21,6 +25,8 @@ const datas = [
     nama: "Agya",
     harga: "Rp.250.000/Hari",
     image: "https://toyota-pekanbaru.com/wp-content/uploads/2023/05/01-black-red.png",
+    spek : "minimum ron 92, 4 seat, Agya terbaru tahun 2020",
+    desc : "Layanan lepas kunci, mobil bersih dan wangi, cocok digunakan bersama keluarga, mobil sehat dan terjaga mesinnya",
     content: content,
   },
   {
@@ -28,6 +34,8 @@ const datas = [
     nama: "HiAce1",
     harga: "Rp.2.000.000/Hari",
     image: "https://jdtoyota.co.id/wp-content/uploads/2020/03/hiace1.png",
+    spek : "minimum ron 92        12 seat         HiAce 1 terbaru tahun 2020",
+    desc : "Layanan lepas kunci, mobil bersih dan wangi, cocok digunakan bersama keluarga, mobil sehat dan terjaga mesinnya",
     content: content,
   },
   {
@@ -35,6 +43,17 @@ const datas = [
     nama: "HiAce2",
     harga: "Rp.3.000.000/Hari",
     image: "https://www.toyotatunaspecenongan.com/wp-content/uploads/2022/02/2-hiace-commuter-silver-metallic.png",
+    spek : "minimum ron 92, 12 seat, HiAce terbaru tahun 2020",
+    desc : "Layanan lepas kunci, mobil bersih dan wangi, cocok digunakan bersama keluarga, mobil sehat dan terjaga mesinnya",
+    content: content,
+  },
+  {
+    id: 6,
+    nama: "HiAce2",
+    harga: "Rp.5.000.000/Hari",
+    image: "https://www.toyotatunaspecenongan.com/wp-content/uploads/2022/02/2-hiace-commuter-silver-metallic.png",
+    spek : "minimum ron 92, 12 seat, HiAce terbaru tahun 2020",
+    desc : "Layanan lepas kunci, mobil bersih dan wangi, cocok digunakan bersama keluarga, mobil sehat dan terjaga mesinnya",
     content: content,
   },
   
