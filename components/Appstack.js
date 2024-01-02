@@ -12,12 +12,14 @@ import Register from "../screens/register";
 import login from "../screens/login";
 import { createNativeStackNavigator, } from "@react-navigation/native-stack";
 import Home from "../screens/home";
+import Contact from "../screens/contact";
 import Login from "../screens/login";
 import ProductDetailScreen from "../screens/ProductDetail";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
+    
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -27,8 +29,11 @@ const Tabs = () => {
                         case "Home":
                             iconName = "home-outline";
                             break;
-                        case "menu":
-                            iconName = "document-text-outline";
+                        case "Book":
+                            iconName = "book-outline";
+                            break;
+                        case "Contact":
+                            iconName = "mail-outline";
                             break;
                         case "Profile":
                             iconName = "person-circle-outline";
@@ -37,7 +42,7 @@ const Tabs = () => {
                     return (
                         <Ionicons
                             name={iconName}
-                            size={28}
+                            size={15}
                             color={focused ? "black" : color}
                         />
                     );
@@ -46,7 +51,7 @@ const Tabs = () => {
 
                 tabBarIconStyle: { marginTop: 5 },
                 tabBarStyle: {
-                    height: 70,
+                    height: 80,
                     borderTopWidth: 0,
                 },
                 tabBarLabel: ({ children, color, focused }) => {
@@ -59,7 +64,8 @@ const Tabs = () => {
             })}
         >
             <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-            <Tab.Screen name="Car" component={Menu} options={{headerShown: false}} />
+            <Tab.Screen name="Book" component={Menu} options={{headerShown: false}} />
+            <Tab.Screen name="Contact" component={Contact} options={{headerShown: false}} />
             <Tab.Screen name="Profile" component={Profile} options={{headerShown: false}} />
         </Tab.Navigator>
     );
