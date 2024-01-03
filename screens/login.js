@@ -70,7 +70,7 @@ const Login = () => {
                             require("../assets/logo.png")
                         } alt="image"
                         w="full"
-                        h="350"
+                        h="250"
                         >
 
                         </Image>
@@ -85,38 +85,33 @@ const Login = () => {
                     
                          LOGIN
                     </Heading>
-                    <VStack space={3} mt="5">
-                    <FormControl>
+                    <VStack space={5} mt="3">
+            <FormControl>
               <FormControl.Label>E-mail</FormControl.Label>
                <TextInput
-                            placeholder="Enter Email"
+                            style=
+                            {{ borderWidth:1, height:35}}
+                            placeholder="  Enter Email"
                             value={email}
                             onChangeText={txt => setEmail(txt)} />
-            </FormControl>
+             </FormControl>
 
             <FormControl>
               <FormControl.Label>Password</FormControl.Label>
                <TextInput
-                            placeholder="Enter Password"
+                            style=
+                            {{ borderWidth:1, height:35}}
+                            placeholder="  Enter Password"
                             value={password}
                             onChangeText={txt => setPassword(txt)} />
             </FormControl>
-                        {/* <TextInput
-                            placeholder="Enter Email"
-                            value={email}
-                            onChangeText={txt => setEmail(txt)} />
-
-                        <TextInput
-                            placeholder="Enter Password"
-                            value={password}
-                            onChangeText={txt => setPassword(txt)} /> */}
-                        <Button mt="2" color="#5997E0" onPress={Loginrek}>
-                            Login
+                        <Button mt="2" colorScheme="lightBlue" onPress={Loginrek}>
+                            LOGIN
                         </Button>
-                        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                            <Text textAlign="center">              Belum punya Akun? Register
-                            </Text>
-                        </TouchableOpacity>
+                        
+                        <Button mt="1" colorScheme="lightBlue" onPress={() => navigation.navigate('Register')}>
+                            Belum punya Akun ? Register 
+                        </Button>
                     </VStack>
                 </Box>
             </Center>
