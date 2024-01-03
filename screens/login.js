@@ -37,7 +37,7 @@ const Login = () => {
 
         const snapEmail = await getDocs(QEmail)
         const snapPassword = await getDocs(QPassword)
-
+        
         const GabunganSnap = snapEmail.docs.concat(snapPassword.docs);
         if (!GabunganSnap.empty) {
             GabunganSnap.forEach(async (doc) => {

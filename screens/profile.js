@@ -30,17 +30,16 @@ const profile = () => {
 
     const FetchData = async () => {
         try {
-            const userData = await AsyncStorage.getItem("memori")
-            if (userData !== null) {
-                const parsedData = JSON.parse(userData);
-                setUserData(parsedData);
-                console.log("ini dari asyncStorage:", parsedData);
-            }
+          const usernameData = await AsyncStorage.getItem("memori");
+          if (usernameData !== null) {
+            const parsedData = JSON.parse(usernameData);
+            setUserData(parsedData);
+            console.log("Username dari AsyncStorage:", parsedData.username);
+          }
+        } catch (error) {
+          console.error("Error fetching data", error);
         }
-        catch (error) {
-            console.error("Error Fetching data", error)
-        }
-    }
+      }
     useEffect(() => {
 
 
@@ -126,7 +125,9 @@ const profile = () => {
                         p={5}
                         backgroundColor="#FFFFFF" shadow="9" rounded={10}>
                         <Center>
+                            <TouchableOpacity  onPress={() => navigation.navigate("PromoScreen")}>
                             <Text fontSize={20}>Promo</Text>
+                            </TouchableOpacity>
                         </Center>
                     </Box>
 

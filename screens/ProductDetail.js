@@ -1,160 +1,120 @@
-import { Heading, Image, Text, FlatList, Avatar, Icon, HStack, VStack, View, Button } from "native-base";
-import { Box, ScrollView, FormControl, Center } from "native-base";
-import { TouchableOpacity } from "react-native";
-import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
-import datas from "../datas";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { auth } from '../firebase'
-import { signOut } from 'firebase/auth';
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { Heading, Image, Text, VStack, Box, ScrollView, HStack, Button, View } from 'native-base';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { TouchableOpacity } from 'react-native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
+import { db } from '../firebase';
+import { collection, getDoc, doc } from 'firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProductDetailScreen = () => {
-    // const user = auth.currentUser;
-    const navigation = useNavigation();
-    const isFocused = useIsFocused();
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
+  const route = useRoute();
 
-    const route = useRoute();
+  const [userData, setUserData] = useState(null);
+  const [productData, setProductData] = useState(null);
 
-    const image = route.params ? route.params.ProductImg : "";
-    const nama = route.params ? route.params.ProductNama : "";
-    const harga = route.params ? route.params.ProductHarga : "";
-    const spek = route.params ? route.params.ProductSpek : "";
+  const image = route.params ? route.params.ProductImg : '';
+  const productName = route.params ? route.params.ProductNama : '';
+  const productPrice = route.params ? route.params.ProductHarga : '';
+  const productSpec = route.params ? route.params.ProductSpek : '';
 
-    
-    const signOutUser = async () => {
-        // signOut(auth).then(() => {
-        //     navigation.replace("Login");
-        // }).catch(err => {
-        //     console.log(err);
-        // })
-        await AsyncStorage.removeItem("memori");
-
-        navigation.replace("LoginScreen")
+  const FetchData = async () => {
+    try {
+      const userData = await AsyncStorage.getItem('memori');
+      if (userData !== null) {
+        const parsedData = JSON.parse(userData);
+        setUserData(parsedData);
+      }
+    } catch (error) {
+      console.error('Error Fetching data', error);
     }
+  };
 
-    const [UserData, setUserData] = useState(null);
-
-    const FetchData = async () => {
-        try {
-            const userData = await AsyncStorage.getItem("memori")
-            if (userData !== null) {
-                const parsedData = JSON.parse(userData);
-                setUserData(parsedData);
-                console.log("ini dari asyncStorage:", parsedData);
-            }
-        }
-        catch (error) {
-            console.error("Error Fetching data", error)
-        }
+  const fetchProductData = async () => {
+    try {
+      const productDocRef = doc(db, 'types', productName); // Assuming productName is the unique identifier
+      const productDocSnapshot = await getDoc(productDocRef);
+      if (productDocSnapshot.exists()) {
+        setProductData({
+          id: productDocSnapshot.id,
+          ...productDocSnapshot.data(),
+        });
+      } else {
+        console.log('Product not found in Firestore');
+      }
+    } catch (error) {
+      console.error('Error fetching product data from Firestore: ', error);
     }
-    useEffect(() => {
+  };
 
+  useEffect(() => {
+    if (isFocused) {
+      FetchData();
+      fetchProductData();
+    }
+  }, [isFocused]);
 
+  const bookProduct = () => {
+    // Logic for booking the product
+    console.log('Booking the product:', productName);
+  };
 
-        if (isFocused) {
-            FetchData();
-        }
-    }, [isFocused])
-
-    console.log("Ini state Dataku :", UserData);
-
-
-    return (
-        <SafeAreaView >
-            <ScrollView>
-                <Heading
-                    marginTop={8}
-                    mx={4}
-                    mb={10}
-                    
-                >Livik</Heading>
-                <Center>
-                    <Box
-                        width={330} // Sesuaikan lebar kotak sesuai kebutuhan Anda
-                        borderWidth={2}
-                        borderColor="gray.300"
-                        borderRadius={5}
-                        overflow="hidden"
-                    >
-                        <Image
-                            alt="Product"
-                            source={{ uri: image }}
-                            w={300}
-                            h={190}
-                        />
-                    </Box>
-                </Center>
-
-                <VStack p={3} >
-                    <Box
-
-
-
-
-
-
-                    >
-
-                        <Text fontSize={27} bold>{nama}</Text>
-
-
-                    </Box>
-
-                    <Box
-                        mt={2}
-
-                    >
-
-                        <Text fontSize={17}> Tarif / Hari {harga}</Text>
-
-                    </Box>
-
-
-                   
-
-
-                    <View style={{ flexDirection: 'row', alignItems: 'center', }}>
-                        <View style={{ flex: 1, height: 1, backgroundColor: 'black' }} />
-                        </View>
-                    <Box>
-                        <Text bold fontSize={27}>Specification</Text>
-                        <Text bold fontSize={17}>{spek}</Text>
-                        
-                    </Box>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', }}>
-                        <View style={{ flex: 1, height: 1, backgroundColor: 'black' }} />
-                        </View>
-                    <Box>
-                        <Text bold fontSize={27}>Description</Text>
-                        <VStack
-                        mt={5}
-                        >
-                            <Text fontSize={17}>Layanan lepas kunci</Text>
-                            <Text fontSize={17}>Mobil Bersih dan wangi</Text>
-                            <Text fontSize={17}>Cocok Digunakan bersama keluarga</Text>
-                            <Text fontSize={17}>Mobil sehat dan terjaga mesinya</Text>
-                            
-                            
-                             </VStack>
-                    </Box>
-
-                </VStack>
-                <HStack
-                ml={295}
-                mt={6}
-                
-                >
-                    <TouchableOpacity onPress={{}}>
-                    <Button width={20}>book</Button>
-                    </TouchableOpacity>
-                </HStack>
-            </ScrollView>
-        </SafeAreaView>
-
-
-    );
+  return (
+    <SafeAreaView>
+      <ScrollView>
+        <Heading marginTop={8} mx={4} mb={10}>
+          Livik
+        </Heading>
+        <VStack p={3}>
+          <Box width={330} borderWidth={2} borderColor="gray.300" borderRadius={5} overflow="hidden">
+            <Image alt="Product" source={{ uri: image }} w={300} h={190} />
+          </Box>
+          <Box mt={2}>
+            <Text fontSize={27} bold>
+              {productName}
+            </Text>
+          </Box>
+          <Box mt={2}>
+            <Text fontSize={17}> Tarif / Hari Rp.{productPrice}</Text>
+          </Box>
+          <Box>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ flex: 1, height: 1, backgroundColor: 'black' }} />
+            </View>
+          </Box>
+          <Box>
+            <Text bold fontSize={27}>
+              Specification
+            </Text>
+            <Text bold fontSize={17}>{productSpec}</Text>
+          </Box>
+          <Box>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ flex: 1, height: 1, backgroundColor: 'black' }} />
+            </View>
+          </Box>
+          <Box>
+            <Text bold fontSize={27}>
+              Description
+            </Text>
+            <VStack mt={5}>
+              <Text fontSize={17}>Layanan lepas kunci</Text>
+              <Text fontSize={17}>Mobil Bersih dan wangi</Text>
+              <Text fontSize={17}>Cocok Digunakan bersama keluarga</Text>
+              <Text fontSize={17}>Mobil sehat dan terjaga mesinnya</Text>
+            </VStack>
+          </Box>
+        </VStack>
+        <HStack ml={295} mt={6}>
+          <TouchableOpacity onPress={bookProduct}>
+            <Button width={20}>Book</Button>
+          </TouchableOpacity>
+        </HStack>
+      </ScrollView>
+    </SafeAreaView>
+  );
 };
 
 export default ProductDetailScreen;

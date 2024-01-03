@@ -15,6 +15,7 @@ import Home from "../screens/home";
 import Contact from "../screens/contact";
 import Login from "../screens/login";
 import ProductDetailScreen from "../screens/ProductDetail";
+import PromoScreen from "../screens/promo";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -87,7 +88,12 @@ const Appstack = () => {
                 component={Register}
                 options={{ headerShown: false, headerTitle: 'login screen ', headerTitleAlign: "center" }}
             />
-
+            <Stack.Screen
+                name="PromoScreen"
+                component={PromoScreen}
+                options={{ headerShown: false, headerTitle: 'promo screen ', headerTitleAlign: "center" }}
+            />
+            
             <Stack.Screen
                 name="ProductDetail"
                 component={ProductDetailScreen}
