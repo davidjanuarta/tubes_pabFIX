@@ -69,7 +69,7 @@ const Register = () => {
                             require("../assets/logo.png")
                         } alt="image"
                         w="full"
-                        h="350"
+                        h="250"
                         >
 
                         </Image>
@@ -81,39 +81,34 @@ const Register = () => {
                     }} fontWeight="semibold">
                         REGISTER
                     </Heading>
-                    <VStack space={3} mt="5">
+                    <VStack space={5} mt="3">
                     <FormControl>
               <FormControl.Label>E-mail</FormControl.Label>
                <TextInput
-                            placeholder="Enter Email"
+                            style=
+                            {{ borderWidth:1, height:35}}
+                            placeholder="  Enter Email"
                             value={email}
                             onChangeText={txt => setEmail(txt)} />
             </FormControl>
             <FormControl>
               <FormControl.Label>Password</FormControl.Label>
                <TextInput
-                            placeholder="Enter Password"
+                            style=
+                            {{ borderWidth:1, height:35}}
+                            placeholder="  Enter Password"
                             value={password}
                             onChangeText={txt => setPassword(txt)} />
             </FormControl>
             
-            
-
-                        {/* <TextInput
-                            placeholder="Enter Email"
-                            value={email}
-                            onChangeText={txt => setEmail(txt)} />
-                        <TextInput
-                            placeholder="Enter Password"
-                            value={password}
-                            onChangeText={txt => setPassword(txt)} /> */}
-                        <Button mt="2" color="#5997E0" onPress={createUser}>
-                            Register
+                        <Button mt="2" colorScheme="lightBlue" onPress={createUser}>
+                            REGISTER
                         </Button>
-                        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-                            <Text textAlign="center">             Already have a account? Sign in
-                            </Text>
-                        </TouchableOpacity>
+                        
+                        <Button mt="1" colorScheme="lightBlue" onPress={() => navigation.navigate('LoginScreen')}>
+                        Already have a account? Sign in
+                        </Button>
+
                     </VStack>
                 </Box>
             </Center>
