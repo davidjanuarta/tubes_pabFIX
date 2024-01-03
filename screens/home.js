@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Alert } from 'react-native';
-import { Box, Heading, Text, VStack, Image, NativeBaseProvider, ScrollView } from 'native-base';
+import { Box, Heading, Text, VStack, Image, NativeBaseProvider, ScrollView, HStack, FlatList } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { db } from "../firebase";
@@ -78,12 +78,88 @@ const Home = () => {
     <NativeBaseProvider>
       <SafeAreaView>
         <ScrollView>
-        <Heading p={5}>Discover the latest deals and updates</Heading>
+          <HStack mt={5}>
+            <VStack>
+              <Box
+                mx={20}
+                alignItems={"center"}
 
-        {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}> */}
-          <VStack space={4}>
-            {typesData.map((item, index) => renderGridItem({ item, index }))}
-          </VStack>
+              >
+                <Ionicons as="IonIcons" name="car" size={30} color="black'"></Ionicons>
+                <Text>Promot</Text>
+              </Box>
+            </VStack>
+            <VStack>
+              <Box
+                alignItems={"center"}
+                mx={20}
+              >
+                <Ionicons as="IonIcons" name="bookmark-outline" size={29} color="black'"></Ionicons>
+                <Text>Promot</Text>
+              </Box>
+            </VStack>
+          </HStack>
+          <Box borderWidth={0.5} />
+
+          <Heading p={3}>Dapatkan harga sewa terbaik disini</Heading>
+          <HStack
+            backgroundColor={'#5997E0'} justifyContent="space-between"
+            borderRadius={18}>
+            <VStack>
+              <Box py={50} px={3}
+              >
+                <Text
+                  style={{
+                    fontSize: 19,
+                    fontWeight: '900',
+                    color: 'white',
+
+                  }}
+                >
+                  Perpanjang Booking
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 19,
+                    fontWeight: '900',
+                    color: 'white',
+
+                  }}
+                >
+                  Kini Lebh Mudah!
+                </Text>
+              </Box>
+            </VStack>
+
+            <Box
+
+            padding={2}
+          >
+            <Image
+
+
+              source={require('../assets/finansial.jpg')}
+              alt='hhhgm'
+              style={{
+                resizeMode: 'cover',
+                height: 140,
+                width: 200,
+                borderRadius: 17,
+
+              }}
+            />
+          </Box>
+          </HStack>
+          <Heading p={2}>Popular cars</Heading>
+
+          {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}> */}
+          <FlatList
+    horizontal
+    data={typesData}
+    keyExtractor={(item) => item.id.toString()}
+    renderItem={({ item, index }) => renderGridItem({ item, index })}
+    showsHorizontalScrollIndicator={false}
+  />
         </ScrollView>
       </SafeAreaView>
     </NativeBaseProvider>
