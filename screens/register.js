@@ -69,7 +69,7 @@ const Register = () => {
                             require("../assets/logo.png")
                         } alt="image"
                         w="full"
-                        h="250"
+                        h="350"
                         >
 
                         </Image>
@@ -85,7 +85,6 @@ const Register = () => {
                     <FormControl>
               <FormControl.Label>E-mail</FormControl.Label>
                <TextInput
-                            style={{ borderWidth:1}}
                             placeholder="Enter Email"
                             value={email}
                             onChangeText={txt => setEmail(txt)} />
@@ -93,7 +92,6 @@ const Register = () => {
             <FormControl>
               <FormControl.Label>Password</FormControl.Label>
                <TextInput
-                            style={{ borderWidth:1}}
                             placeholder="Enter Password"
                             value={password}
                             onChangeText={txt => setPassword(txt)} />
@@ -113,7 +111,7 @@ const Register = () => {
                             Register
                         </Button>
                         <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-                            <Text textAlign="center">          Already have a account? Sign in
+                            <Text textAlign="center">             Already have a account? Sign in
                             </Text>
                         </TouchableOpacity>
                     </VStack>
