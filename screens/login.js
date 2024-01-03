@@ -70,7 +70,7 @@ const Login = () => {
                             require("../assets/logo.png")
                         } alt="image"
                         w="full"
-                        h="350"
+                        h="250"
                         >
 
                         </Image>
@@ -83,38 +83,31 @@ const Login = () => {
                         color: "warmGray.50"
                     }} fontWeight="semibold">
                     
-                        Login
+                        LOGIN
                     </Heading>
                     <VStack space={3} mt="5">
-                    <FormControl>
+            <FormControl>
               <FormControl.Label>E-mail</FormControl.Label>
                <TextInput
+                            style={{ borderWidth:1}}
                             placeholder="Enter Email"
                             value={email}
                             onChangeText={txt => setEmail(txt)} />
-            </FormControl>
+             </FormControl>
 
             <FormControl>
               <FormControl.Label>Password</FormControl.Label>
                <TextInput
+                            style={{ borderWidth:1}}
                             placeholder="Enter Password"
                             value={password}
                             onChangeText={txt => setPassword(txt)} />
             </FormControl>
-                        {/* <TextInput
-                            placeholder="Enter Email"
-                            value={email}
-                            onChangeText={txt => setEmail(txt)} />
-
-                        <TextInput
-                            placeholder="Enter Password"
-                            value={password}
-                            onChangeText={txt => setPassword(txt)} /> */}
                         <Button mt="2" color="#5997E0" onPress={Loginrek}>
                             Login
                         </Button>
                         <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                            <Text textAlign="center">              Belum punya Akun? Register
+                            <Text textAlign="center">            Belum punya Akun? Register
                             </Text>
                         </TouchableOpacity>
                     </VStack>
