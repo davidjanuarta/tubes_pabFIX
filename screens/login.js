@@ -83,11 +83,7 @@ const Login = () => {
                         color: "warmGray.50"
                     }} fontWeight="semibold">
                     
-<<<<<<< HEAD
-                         gk LOGIN
-=======
                         Login
->>>>>>> 6f3acf39ed08964ccc7e0d6ddb65ab269ab804fa
                     </Heading>
                     <VStack space={3} mt="5">
                     <FormControl>
