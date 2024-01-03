@@ -113,7 +113,7 @@ const PromoScreen = () => {
               borderRadius={8}
               padding={8}
               width={350}
-              height={190}
+              height={230}
               shadow={5}
 
             >
@@ -148,7 +148,7 @@ const PromoScreen = () => {
               borderRadius={8}
               padding={8}
               width={350}
-              height={190}
+              height={205}
               shadow={5}
 
             >

@@ -7,6 +7,9 @@ import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 
+const numColumns = 2;
+
+
 const Home = () => {
   const navigation = useNavigation();
   const [typesData, setTypesData] = useState([]);
@@ -133,33 +136,43 @@ const Home = () => {
 
             <Box
 
-            padding={2}
-          >
-            <Image
+              padding={2}
+            >
+              <Image
 
 
-              source={require('../assets/finansial.jpg')}
-              alt='hhhgm'
-              style={{
-                resizeMode: 'cover',
-                height: 140,
-                width: 200,
-                borderRadius: 17,
+                source={require('../assets/finansial.jpg')}
+                alt='hhhgm'
+                style={{
+                  resizeMode: 'cover',
+                  height: 140,
+                  width: 200,
+                  borderRadius: 17,
 
-              }}
-            />
-          </Box>
+                }}
+              />
+            </Box>
           </HStack>
           <Heading p={2}>Popular cars</Heading>
 
           {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}> */}
           <FlatList
-    horizontal
-    data={typesData}
-    keyExtractor={(item) => item.id.toString()}
-    renderItem={({ item, index }) => renderGridItem({ item, index })}
-    showsHorizontalScrollIndicator={false}
-  />
+            horizontal
+            data={Array.from({ length: Math.ceil(typesData.length / numColumns) })}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => (
+              <HStack>
+                <FlatList
+                  horizontal
+                  data={typesData.slice(index * numColumns, (index + 1) * numColumns)}
+                  keyExtractor={(item) => item.id.toString()}
+                  renderItem={({ item, index }) => renderGridItem({ item, index })}
+                  showsHorizontalScrollIndicator={false}
+                />
+              </HStack>
+            )}
+            showsHorizontalScrollIndicator={false}
+          />
         </ScrollView>
       </SafeAreaView>
     </NativeBaseProvider>
