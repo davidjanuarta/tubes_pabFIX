@@ -28,8 +28,8 @@ const Tabs = () => {
                         case "Home":
                             iconName = "home-outline";
                             break;
-                        case "menu":
-                            iconName = "document-text-outline";
+                        case "Book":
+                            iconName = "car-outline";
                             break;
                         case "Profile":
                             iconName = "person-circle-outline";
@@ -38,7 +38,7 @@ const Tabs = () => {
                     return (
                         <Ionicons
                             name={iconName}
-                            size={28}
+                            size={15}
                             color={focused ? "black" : color}
                         />
                     );
@@ -47,7 +47,7 @@ const Tabs = () => {
 
                 tabBarIconStyle: { marginTop: 5 },
                 tabBarStyle: {
-                    height: 70,
+                    height: 80,
                     borderTopWidth: 0,
                 },
                 tabBarLabel: ({ children, color, focused }) => {
@@ -60,7 +60,7 @@ const Tabs = () => {
             })}
         >
             <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-            <Tab.Screen name="Car" component={Menu} options={{headerShown: false}} />
+            <Tab.Screen name="Book" component={Menu} options={{headerShown: false}} />
             <Tab.Screen name="Profile" component={Profile} options={{headerShown: false}} />
         </Tab.Navigator>
     );

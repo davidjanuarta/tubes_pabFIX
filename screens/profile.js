@@ -1,4 +1,4 @@
-import { Heading, Image, Text, FlatList, Avatar, Icon, HStack, VStack } from "native-base";
+import { Heading, Image, Text, FlatList, Avatar, Icon, HStack, VStack,Button } from "native-base";
 import { Box, ScrollView, FormControl, Center } from "native-base";
 import { TouchableOpacity } from "react-native";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
@@ -144,18 +144,13 @@ const profile = () => {
                         </Center>
 
                     </Box>
-                    <Box
-                        marginTop={2}
-                        borderWidth="0.5"
-                        w="full"
-                        h="20"
-                        p={5}
-                        backgroundColor="#FFFFFF" shadow="9" rounded={10}>
-                        <TouchableOpacity onPress={signOutUser}>
-                            <Heading>Sign Out</Heading>
-                        </TouchableOpacity>
+                    
+                        <Button mt="15" colorScheme="lightBlue" onPress={signOutUser}>
+                            LOGOUT
+                        </Button>
+                        <TouchableOpacity></TouchableOpacity>
 
-                    </Box>
+                    
 
 
 
