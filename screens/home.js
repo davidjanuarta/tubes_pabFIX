@@ -7,6 +7,9 @@ import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 
+const numColumns = 2;
+
+
 const Home = () => {
   const navigation = useNavigation();
   const [typesData, setTypesData] = useState([]);
@@ -42,8 +45,9 @@ const Home = () => {
       >
         <Box
           width={180}
+          mb={3}
           mr={index % 3 === 2 ? 0 : 4}
-          ml={index % 3 === 0 ? 4 : 0}
+          ml={index % 3 === 0 ? 4 : 4}
           borderWidth={2}
           borderColor="gray.200"
           borderRadius={6}
@@ -54,7 +58,7 @@ const Home = () => {
             width={'100%'}
             height={120}
             alt="Image Data"
-            mb={2}
+            
           />
           <Text fontSize="xs" color="black" bg={'blue.500'}>
             {item.name}
@@ -67,7 +71,7 @@ const Home = () => {
             color="black"
             bg={'blue.500'}
           >
-            {item.price}
+           Rp.{item.price} / Day
           </Heading>
         </Box>
       </TouchableOpacity>
@@ -80,14 +84,16 @@ const Home = () => {
         <ScrollView>
           <HStack mt={5}>
             <VStack>
+              <TouchableOpacity onPress={() => navigation.navigate("Kategori")}>
               <Box
                 mx={20}
                 alignItems={"center"}
-
+                
               >
                 <Ionicons as="IonIcons" name="car" size={30} color="black'"></Ionicons>
                 <Text>Promot</Text>
               </Box>
+              </TouchableOpacity>
             </VStack>
             <VStack>
               <Box
@@ -133,33 +139,43 @@ const Home = () => {
 
             <Box
 
-            padding={2}
-          >
-            <Image
+              padding={2}
+            >
+              <Image
 
 
-              source={require('../assets/finansial.jpg')}
-              alt='hhhgm'
-              style={{
-                resizeMode: 'cover',
-                height: 140,
-                width: 200,
-                borderRadius: 17,
+                source={require('../assets/finansial.jpg')}
+                alt='hhhgm'
+                style={{
+                  resizeMode: 'cover',
+                  height: 140,
+                  width: 200,
+                  borderRadius: 17,
 
-              }}
-            />
-          </Box>
+                }}
+              />
+            </Box>
           </HStack>
           <Heading p={2}>Popular cars</Heading>
 
           {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}> */}
           <FlatList
-    horizontal
-    data={typesData}
-    keyExtractor={(item) => item.id.toString()}
-    renderItem={({ item, index }) => renderGridItem({ item, index })}
-    showsHorizontalScrollIndicator={false}
-  />
+            horizontal
+            data={Array.from({ length: Math.ceil(typesData.length / numColumns) })}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => (
+              <HStack>
+                <FlatList
+                  horizontal
+                  data={typesData.slice(index * numColumns, (index + 1) * numColumns)}
+                  keyExtractor={(item) => item.id.toString()}
+                  renderItem={({ item, index }) => renderGridItem({ item, index })}
+                  showsHorizontalScrollIndicator={false}
+                />
+              </HStack>
+            )}
+            showsHorizontalScrollIndicator={false}
+          />
         </ScrollView>
       </SafeAreaView>
     </NativeBaseProvider>
