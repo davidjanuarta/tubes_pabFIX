@@ -112,8 +112,11 @@ const profile = () => {
 
                     >
                         <Center>
-                            <Text fontSize={20}>Setting</Text>
-
+                        <Center>
+                            <TouchableOpacity  onPress={() => navigation.navigate("Contact")}>
+                            <Text fontSize={20}>Contact</Text>
+                            </TouchableOpacity>
+                        </Center>
                         </Center>
                     </Box>
 

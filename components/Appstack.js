@@ -16,6 +16,8 @@ import Login from "../screens/login";
 import ProductDetailScreen from "../screens/ProductDetail";
 import PromoScreen from "../screens/promo";
 import Contact from "../screens/contact";
+import About from "../screens/about";
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,8 +35,8 @@ const Tabs = () => {
                         case "Book":
                             iconName = "car-outline";
                             break;
-                        case "Contact":
-                            iconName = "mail-outline";
+                        case "About":
+                            iconName = "home-outline";
                             break;
                         case "Profile":
                             iconName = "person-circle-outline";
@@ -66,7 +68,7 @@ const Tabs = () => {
         >
             <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
             <Tab.Screen name="Book" component={Menu} options={{ headerShown: false }} />
-            <Tab.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
+            <Tab.Screen name="About" component={About} options={{ headerShown: false }} />
             <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
 
         </Tab.Navigator>
@@ -93,6 +95,11 @@ const Appstack = () => {
                 name="PromoScreen"
                 component={PromoScreen}
                 options={{ headerShown: false, headerTitle: 'promo screen ', headerTitleAlign: "center" }}
+            />
+            <Stack.Screen
+                name="Contact"
+                component={Contact}
+                options={{ headerShown: false, headerTitle: 'Contact ', headerTitleAlign: "center" }}
             />
 
             <Stack.Screen
