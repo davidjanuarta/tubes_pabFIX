@@ -45,8 +45,9 @@ const Home = () => {
       >
         <Box
           width={180}
+          mb={3}
           mr={index % 3 === 2 ? 0 : 4}
-          ml={index % 3 === 0 ? 4 : 0}
+          ml={index % 3 === 0 ? 4 : 4}
           borderWidth={2}
           borderColor="gray.200"
           borderRadius={6}
@@ -57,7 +58,7 @@ const Home = () => {
             width={'100%'}
             height={120}
             alt="Image Data"
-            mb={2}
+            
           />
           <Text fontSize="xs" color="black" bg={'blue.500'}>
             {item.name}
@@ -70,7 +71,7 @@ const Home = () => {
             color="black"
             bg={'blue.500'}
           >
-            {item.price}
+           Rp.{item.price} / Day
           </Heading>
         </Box>
       </TouchableOpacity>
@@ -83,14 +84,16 @@ const Home = () => {
         <ScrollView>
           <HStack mt={5}>
             <VStack>
+              <TouchableOpacity onPress={() => navigation.navigate("Kategori")}>
               <Box
                 mx={20}
                 alignItems={"center"}
-
+                
               >
                 <Ionicons as="IonIcons" name="car" size={30} color="black'"></Ionicons>
                 <Text>Promot</Text>
               </Box>
+              </TouchableOpacity>
             </VStack>
             <VStack>
               <Box

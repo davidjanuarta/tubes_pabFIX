@@ -15,8 +15,7 @@ import Home from "../screens/home";
 import Login from "../screens/login";
 import ProductDetailScreen from "../screens/ProductDetail";
 import PromoScreen from "../screens/promo";
-import Contact from "../screens/contact";
-
+import Kategori from "../screens/Katergori";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -30,11 +29,8 @@ const Tabs = () => {
                         case "Home":
                             iconName = "home-outline";
                             break;
-                        case "Book":
-                            iconName = "car-outline";
-                            break;
-                        case "Contact":
-                            iconName = "mail-outline";
+                        case "menu":
+                            iconName = "document-text-outline";
                             break;
                         case "Profile":
                             iconName = "person-circle-outline";
@@ -43,7 +39,7 @@ const Tabs = () => {
                     return (
                         <Ionicons
                             name={iconName}
-                            size={15}
+                            size={28}
                             color={focused ? "black" : color}
                         />
                     );
@@ -52,7 +48,7 @@ const Tabs = () => {
 
                 tabBarIconStyle: { marginTop: 5 },
                 tabBarStyle: {
-                    height: 80,
+                    height: 70,
                     borderTopWidth: 0,
                 },
                 tabBarLabel: ({ children, color, focused }) => {
@@ -65,10 +61,8 @@ const Tabs = () => {
             })}
         >
             <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-            <Tab.Screen name="Book" component={Menu} options={{ headerShown: false }} />
-            <Tab.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
-            <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
-
+            <Tab.Screen name="Car" component={Menu} options={{headerShown: false}} />
+            <Tab.Screen name="Profile" component={Profile} options={{headerShown: false}} />
         </Tab.Navigator>
     );
 };
@@ -94,7 +88,12 @@ const Appstack = () => {
                 component={PromoScreen}
                 options={{ headerShown: false, headerTitle: 'promo screen ', headerTitleAlign: "center" }}
             />
-
+            <Stack.Screen
+                name="Kategori"
+                component={Kategori}
+                options={{ headerShown: false, headerTitle: 'kategori screen ', headerTitleAlign: "center" }}
+            />
+            
             <Stack.Screen
                 name="ProductDetail"
                 component={ProductDetailScreen}
@@ -104,7 +103,7 @@ const Appstack = () => {
                 initialParams={{
                     ProductImg: null,
                     ProductNama: "",
-                    ProductHarga: "",
+                    ProductHarga: "", 
                     ProductSpek: "",
                 }}
             />
